@@ -14,6 +14,7 @@ public class WordSearchGenerator {
 
     private String[] words;
     private char[][] grid;
+    private String cache; // to prevent regenerating the same game
     private int maxWordLength;
     private Random random = new Random();
 
@@ -62,19 +63,23 @@ public class WordSearchGenerator {
      * @return String
      */
     public String print() {
-        String game = "";
+        if (cache != null) {
+            return cache;
+        }
+        String output = "";
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
                 if (grid[i][j] == PLACEHOLDER) {
-                    game += (char) ('A' + random.nextInt(26));
+                    output += (char) ('A' + random.nextInt(26));
                 } else {
-                    game += grid[i][j];
+                    output += grid[i][j];
                 }
-                game += " "; // add a space for better visualization
+                output += " "; // add a space for better visualization
             }
-            game += "\n"; // nextline
+            output += "\n"; // nextline
         }
-        return game.toString();
+        this.cache = output;
+        return output;
     }
 
     /**

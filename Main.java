@@ -39,7 +39,7 @@ public class Main {
                 char command = scanner.nextLine().toLowerCase().charAt(0);
                 switch (command) {
                     case OPTION_GENERATE:
-                        generator = new WordSearchGenerator(WORD_SEARCH_SIZE);
+                        generator = new WordSearchGenerator(WORD_SEARCH_SIZE); // init
                         commandGenerate(scanner, generator);
                         break;
                     case OPTION_PRINT:
